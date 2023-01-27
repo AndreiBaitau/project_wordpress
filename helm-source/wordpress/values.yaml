@@ -1,0 +1,34 @@
+image:
+  repository: "andreibaitov/wordpress"
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  hostname: wordpress.k8s-1.sa
+
+persistentVolumeClaim:
+  storageSize: 10Gi
+
+pvc:
+  storage_size: 1Gi
+  storage_class: nfs
+
+nfs:
+  server: 192.168.37.105
+  path: /mnt/IT-Academy/nfs-data/sa2-22-22/Andrei_Baitau/wordpress
+
+extraEnvs:
+  - name: WORDPRESS_DB_HOST
+    value: 192.168.201.1:3306
+  - name: WORDPRESS_DB_NAME
+    value: wordpress
+  - name: WORDPRESS_DB_USER
+    value: wordpress
+  - name: WORDPRESS_DB_PASSWORD
+    value: wordpress
+  - name: WP_DEBUG_LOG
+    value: wordpress
