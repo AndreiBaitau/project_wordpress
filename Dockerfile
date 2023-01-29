@@ -21,8 +21,7 @@ ENV #WORDPRESS_VERSION=5.9.3 \
 #    WORDPRESS_VERSION_SHA1=4e9a256f5cbcfba26108a1a9ebdb31f2ab29af9f
     WORDPRESS_VERSION=6.0.2 \
     WORDPRESS_VERSION_SHA1=9348f0757c21504d085a6c866ccbb86573b39d6f
-#   # 
-
+#   
 # persistent dependencies
 RUN set -eux; \
 	apt-get update; \
