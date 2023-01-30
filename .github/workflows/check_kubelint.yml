@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
         id: files
       - run: |
-              yaml_files="$(ls -d ./helm-source/wordpress/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
+              yaml_files="$(ls -d ./helm-source/wordpress/* | jq -R -s -c 'split("\n")[:-1]')"
               echo "files=`echo -n $yaml_files`" >> $GITHUB_ENV
-  kubeval_check:
+  kubelint_check:
     needs: check-dir-with-files
     runs-on: ubuntu-latest
     strategy:
@@ -23,11 +23,11 @@ jobs:
         manifest-files: ${{fromJson(needs.check-dir-with-files.outputs.files)}}
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-      - name: Checking files with kubeval
-        uses: instrumenta/kubeval-action@master
-        with: 
-          files: ${{matrix.manifest-files}}
+      - name: Scan yamls
+        id: kube-lint-scan
+        uses: stackrox/kube-linter-action@v1
+        with:
+          directory: ${{matrix.manifest-files}}
       - name: Slack Notificationi
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
@@ -36,7 +36,7 @@ jobs:
           SLACK_COLOR: fa0000
           SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
           SLACK_MESSAGE: |-
-            "Some files are not aproved."
+            "Some files are not aproved. Checked with KUBE-LINTER"
           SLACK_TITLE: 'KUBEVAL CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
@@ -52,7 +52,7 @@ jobs:
           SLACK_COLOR: 00b899
           SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
           SLACK_MESSAGE: |-
-            "All files are aproved."
+            "All files are aproved. Checked with KUBE-LINTER"
           SLACK_TITLE: 'KUBEVAL CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} 
