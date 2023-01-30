@@ -37,11 +37,11 @@ jobs:
           SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
           SLACK_MESSAGE: |-
             "Some files are not aproved. Checked with KUBE-LINTER"
-          SLACK_TITLE: 'KUBEVAL CHECK'
+          SLACK_TITLE: 'KUBE-LINTER CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   slack:
-    needs: kubeval_check
+    needs: kubelint_check
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notificationi
@@ -53,6 +53,6 @@ jobs:
           SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
           SLACK_MESSAGE: |-
             "All files are aproved. Checked with KUBE-LINTER"
-          SLACK_TITLE: 'KUBEVAL CHECK'
+          SLACK_TITLE: 'KUBE-LINTER CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} 
