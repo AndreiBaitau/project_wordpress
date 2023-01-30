@@ -5,29 +5,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  check-dir-with-files:
-    runs-on: ubuntu-latest
-    outputs:
-      files: ${{ env.files }}
-    steps:
-      - uses: actions/checkout@v2
-        id: files
-      - run: |
-              yaml_files="$(ls -d ./helm-source/wordpress/* | jq -R -s -c 'split("\n")[:-1]')"
-              echo "files=`echo -n $yaml_files`" >> $GITHUB_ENV
   kubelint_check:
     needs: check-dir-with-files
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        manifest-files: ${{fromJson(needs.check-dir-with-files.outputs.files)}}
-      fail-fast: false
     steps:
       - name: Scan yamls
         id: kube-lint-scan
         uses: stackrox/kube-linter-action@v1
         with:
-          directory: ${{matrix.manifest-files}}
+          directory: ./helm-source/wordpress/
       - name: Slack Notificationi
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
