@@ -7,14 +7,21 @@ on:
 jobs:
   kubelint_check:
     runs-on: ubuntu-latest
+    env:
+      result_file: result.log
     steps:
       - uses: actions/checkout@v2
-        id: files     
-      - name: Scan yamls
-        uses: stackrox/kube-linter-action@v1
+      - name: Scan yaml files with kube-linter
+        uses: stackrox/kube-linter-action@v1.0.4
+        id: kube-linter-action-scan
         with:
-          directory: ./helm-source/wordpress/
-      - name: Slack Notificationi
+          directory: ./helm-source/wordpress/*
+          config: ./.github/config.yaml
+          format: sarif
+          output-file: ${{env.result_file}} 
+       continue-on-error: true 
+
+     - name: Slack Notificationi
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
@@ -26,6 +33,10 @@ jobs:
           SLACK_TITLE: 'KUBE-LINTER CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+     - name: result
+        uses: actions/upload-artifact@v2 
+        with:
+          path: ${{ env.result_file }}
   slack:
     needs: kubelint_check
     runs-on: ubuntu-latest
