@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
         id: files
       - run: |
-              yaml_files="$(ls -d ./helm-source/wordpress/* | jq -R -s -c 'split("\n")[:-1]')"
+              yaml_files="$(ls -d ./helm-source/wordpress/*/ | jq -R -s -c 'split("\n")[:-1]')"
               echo "files=`echo -n $yaml_files`" >> $GITHUB_ENV
   kubeval_check:
     needs: check-dir-with-files
