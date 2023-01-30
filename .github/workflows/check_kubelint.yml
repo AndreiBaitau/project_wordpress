@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notificationi
-        if: ${{ steps.kube-linter-action-scan.outcome }} == "success"
+        if: ${{ steps.kube-linter-action-scan.outcome }} == "failure"
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: git-test
