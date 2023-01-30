@@ -23,7 +23,12 @@ jobs:
         manifest-files: ${{fromJson(needs.check-dir-with-files.outputs.files)}}
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2 
+      - uses: actions/checkout@v2
+      - name: Scan yamls
+        id: kube-lint-scan
+        uses: stackrox/kube-linter-action@v1
+        with:
+          directory: ./helm-source/wordpress/
       - name: Checking files with kubeval
         uses: instrumenta/kubeval-action@master
         with: 
