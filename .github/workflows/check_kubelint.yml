@@ -38,7 +38,7 @@ jobs:
           SLACK_COLOR: ffb657
           SLACK_ICON: https://miro.medium.com/max/1080/0*LdmqFY2AwGNUwWb8.png
           SLACK_MESSAGE: |-
-            "All files are aproved. Checked with KUBE-LINTER"
+            "Check result on GitHub. Checked with KUBE-LINTER"
           SLACK_TITLE: 'KUBE-LINTER CHECK'
           SLACK_USERNAME: Andrei Baitov
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}  
