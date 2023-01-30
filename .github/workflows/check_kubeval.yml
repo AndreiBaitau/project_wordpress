@@ -1,0 +1,58 @@
+name: kubeval
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  check-dir-with-files:
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ env.files }}
+    steps:
+      - uses: actions/checkout@v2
+        id: files
+      - run: |
+              yaml_files="$(ls -d ./helm-source/wordpress* | jq -R -s -c 'split("\n")[:-1]')"
+              echo "files=`echo -n $yaml_files`" >> $GITHUB_ENV
+  kubeval_check:
+    needs: check-dir-with-files
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        manifest-files: ${{fromJson(needs.check-dir-with-files.outputs.files)}}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Checking files with kubeval
+        uses: instrumenta/kubeval-action@master
+        with: 
+          files: ${{matrix.manifest-files}}
+      - name: Slack Notificationi
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: git-test
+          SLACK_COLOR: fa0000
+          SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
+          SLACK_MESSAGE: |-
+            "Some files are not aproved."
+          SLACK_TITLE: 'KUBEVAL CHECK'
+          SLACK_USERNAME: Andrei Baitov
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  slack:
+    needs: kubeval_check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notificationi
+        #if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: git-test
+          SLACK_COLOR: 00b899
+          SLACK_ICON: https://avatars.mds.yandex.net/i?id=ab4d8466aeb3ace0427503c69b9583ec296c3081-5295804-images-thumbs&n=13
+          SLACK_MESSAGE: |-
+            "All files are aproved."
+          SLACK_TITLE: 'KUBEVAL CHECK'
+          SLACK_USERNAME: Andrei Baitov
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} 
