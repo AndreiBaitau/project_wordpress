@@ -6,7 +6,6 @@ on:
 
 jobs:
   kubelint_check:
-    needs: check-dir-with-files
     runs-on: ubuntu-latest
     steps:
       - name: Scan yamls
