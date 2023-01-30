@@ -1,4 +1,4 @@
-name: kubeval
+name: kubelint
 
 on:
   push:
