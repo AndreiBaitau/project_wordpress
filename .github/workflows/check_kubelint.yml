@@ -17,7 +17,7 @@ jobs:
         uses: stackrox/kube-linter-action@v1.0.4
         id: kube-linter-action-scan
         with:
-          directory: ./helm-source/wordpress/*
+          directory: ./helm-source/wordpress/
           config: ./.github/config.yaml
           format: sarif
           output-file: ${{env.result_file}}
