@@ -19,7 +19,7 @@ jobs:
         with:
           directory: ./helm-source/wordpress/
           config: ./.github/config.yaml
-          format: sarif
+          format: plain
           output-file: ${{env.result_file}}
         continue-on-error: true
       - name: Slack Notificationi
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Notificationi
-        #if: ${{ failure() }}
+        if: ${{ steps.kube-linter-action-scan.outcome }} == "success"
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: git-test
