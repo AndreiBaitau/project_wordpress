@@ -15,6 +15,11 @@ jobs:
       - run: |
               yaml_files="$(ls -d ./helm-source/wordpress/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
               echo "files=`echo -n $yaml_files`" >> $GITHUB_ENV
+      - name: Scan yamls
+        id: kube-lint-scan
+        uses: stackrox/kube-linter-action@v1
+        with:
+          directory: ./helm-source/wordpress/
   kubeval_check:
     needs: check-dir-with-files
     runs-on: ubuntu-latest
@@ -24,11 +29,6 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: Scan yamls
-        id: kube-lint-scan
-        uses: stackrox/kube-linter-action@v1
-        with:
-          directory: ./helm-source/wordpress/
       - name: Checking files with kubeval
         uses: instrumenta/kubeval-action@master
         with: 
