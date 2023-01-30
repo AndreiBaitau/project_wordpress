@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   wordpress:
   - apiVersion: v2
+    appVersion: 1.13.1
+    created: "2023-01-30T10:32:27.023873507Z"
+    description: A Helm chart for Kubernetes
+    digest: 3ccfcb73aff275e61a065c5e7c4a225b7361c1c35584bd4c82a81b946f7ba45e
+    name: wordpress
+    type: application
+    urls:
+    - https://andreibaitau.github.io/project_wordpress/helm-releases/wordpress-1.13.1.tgz
+    version: 1.13.1
+  - apiVersion: v2
     appVersion: 1.12.1
-    created: "2023-01-30T10:30:27.449953587Z"
+    created: "2023-01-30T10:32:27.023568923Z"
     description: A Helm chart for Kubernetes
     digest: f2796ec50e077ac464420ce13a8a8a57a0e3c99e0d4e2cce58ff618c262556bc
     name: wordpress
@@ -13,7 +23,7 @@ entries:
     version: 1.12.1
   - apiVersion: v2
     appVersion: 1.11.1
-    created: "2023-01-30T10:30:27.449657659Z"
+    created: "2023-01-30T10:32:27.023272431Z"
     description: A Helm chart for Kubernetes
     digest: 1c22d5fe3be5a11ec13feb374d05f16f2fc6ed47c096da6d744e10db1b3b4b94
     name: wordpress
@@ -23,7 +33,7 @@ entries:
     version: 1.11.1
   - apiVersion: v2
     appVersion: 1.9.1
-    created: "2023-01-30T10:30:27.451955995Z"
+    created: "2023-01-30T10:32:27.025840201Z"
     description: A Helm chart for Kubernetes
     digest: 39332747c8370beb2bf3929216926cfd02bed7cdb1997a56c32edcb8163be083
     name: wordpress
@@ -33,7 +43,7 @@ entries:
     version: 1.9.1
   - apiVersion: v2
     appVersion: 1.7.1
-    created: "2023-01-30T10:30:27.45166324Z"
+    created: "2023-01-30T10:32:27.025511249Z"
     description: A Helm chart for Kubernetes
     digest: 9472bbf6ab1220dab264ea7ccf299874ffff19cb09491b8329541dca3207f399
     name: wordpress
@@ -43,7 +53,7 @@ entries:
     version: 1.7.1
   - apiVersion: v2
     appVersion: 1.5.1
-    created: "2023-01-30T10:30:27.451354765Z"
+    created: "2023-01-30T10:32:27.025158523Z"
     description: A Helm chart for Kubernetes
     digest: 16382b88bc22064c895eeda98fa1ee450c30acecc830a982f3e47aeb717e64cd
     name: wordpress
@@ -53,7 +63,7 @@ entries:
     version: 1.5.1
   - apiVersion: v2
     appVersion: 1.4.1
-    created: "2023-01-30T10:30:27.450940225Z"
+    created: "2023-01-30T10:32:27.024806597Z"
     description: A Helm chart for Kubernetes
     digest: 8e36c4855318c812060eeada9304da49f85b1c05de021327b94cb69742de6eb9
     name: wordpress
@@ -63,7 +73,7 @@ entries:
     version: 1.4.1
   - apiVersion: v2
     appVersion: 1.3.1
-    created: "2023-01-30T10:30:27.450568967Z"
+    created: "2023-01-30T10:32:27.024494895Z"
     description: A Helm chart for Kubernetes
     digest: 05b3fa0290d8d23760a94a0fb27a384ec7ef5ff09b0f9242ac1c2f8327e1451f
     name: wordpress
@@ -73,7 +83,7 @@ entries:
     version: 1.3.1
   - apiVersion: v2
     appVersion: 1.2.1
-    created: "2023-01-30T10:30:27.450250104Z"
+    created: "2023-01-30T10:32:27.02417211Z"
     description: A Helm chart for Kubernetes
     digest: 8e1e05bf46acda1721adccbd9dfce20ccfa5e6b80aa5785ecf28564457b68c47
     name: wordpress
@@ -83,7 +93,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.1.1
-    created: "2023-01-30T10:30:27.449251883Z"
+    created: "2023-01-30T10:32:27.022987326Z"
     description: A Helm chart for Kubernetes
     digest: cb8f54b45f871bdbc3d65b7170893d519ac4f703a7b99c54f051945d0dab2791
     name: wordpress
@@ -93,7 +103,7 @@ entries:
     version: 1.1.1
   - apiVersion: v2
     appVersion: 1.0.2
-    created: "2023-01-30T10:30:27.448680478Z"
+    created: "2023-01-30T10:32:27.022704645Z"
     description: A Helm chart for Kubernetes
     digest: 26efcd0bc2b53d5e6917a27122022b57c3e22b65c3845370dab66fa465989b15
     name: wordpress
@@ -103,7 +113,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: 1.0.1
-    created: "2023-01-30T10:30:27.448332473Z"
+    created: "2023-01-30T10:32:27.022379803Z"
     description: A Helm chart for Kubernetes
     digest: c8706850b56e8c7d7dffad3e3c23ccb029dfa8593430bc2a0898a2eabb7822fb
     name: wordpress
@@ -111,4 +121,4 @@ entries:
     urls:
     - https://andreibaitau.github.io/project_wordpress/helm-releases/wordpress-1.0.1.tgz
     version: 1.0.1
-generated: "2023-01-30T10:30:27.447828347Z"
+generated: "2023-01-30T10:32:27.021913132Z"
