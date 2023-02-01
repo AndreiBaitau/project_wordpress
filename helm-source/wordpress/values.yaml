@@ -19,7 +19,7 @@ pvc:
 
 nfs:
   server: 192.168.37.105
-  path: /mnt/IT-Academy/nfs-data/sa2-22-22/Andrei_Baita/wordpress
+  path: /mnt/IT-Academy/nfs-data/sa2-22-22/Andrei_Baitau/wordpress
 
 extraEnvs:
   - name: WORDPRESS_DB_HOST
