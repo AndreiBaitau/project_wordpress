@@ -1,5 +1,5 @@
 image:
-  repository: "andreibaitov/wordpress"
+  repository: "andreibaitov/wordpres"
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
