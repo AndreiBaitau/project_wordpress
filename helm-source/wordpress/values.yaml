@@ -1,5 +1,5 @@
 image:
-  repository: "andreibaitov/wordpres"
+  repository: "andreibaitov/wordpress"
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
@@ -19,7 +19,7 @@ pvc:
 
 nfs:
   server: 192.168.37.105
-  path: /mnt/IT-Academy/nfs-data/sa2-22-22/Andrei_Baitau/wordpress
+  path: /mnt/IT-Academy/nfs-data/sa2-22-22/Andrei_Baita/wordpress
 
 extraEnvs:
   - name: WORDPRESS_DB_HOST
