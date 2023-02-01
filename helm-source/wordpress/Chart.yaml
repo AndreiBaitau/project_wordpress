@@ -1,6 +1,6 @@
 apiVersion: v2
-nameee: wordpress
+name: wordpress
 description: A Helm chart for Kubernetes
 type: application
-versionn: 1.56.1
+version: 1.56.1
 appVersion: 1.56.1
