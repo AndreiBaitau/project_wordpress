@@ -150,9 +150,29 @@ pipeline {
                 }
             }
         }  
-      
-      
+   } 
+    
+    post {
+    success {
+        withCredentials([string(credentialsId: 'token', variable: 'TOKEN'), string(credentialsId: 'chat', variable: 'CHAT_ID')]) {
+        sh  ("""
+            
+            curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*Job name:* ${env.JOB_NAME}  \n\n*Build number:* ${env.BUILD_NUMBER} \n\n*Build status*: Success \n'
+        """)
+            
+        }
+      slackSend (color: '#00FF00', message: "\1 Build was successfuly done:\1 \n\n Job name --> ${env.JOB_NAME} \n Build number --> 1.${env.BUILD_NUMBER}.1")
+    }
+    failure {
+         withCredentials([string(credentialsId: 'token', variable: 'TOKEN'), string(credentialsId: 'chat', variable: 'CHAT_ID')]) {
+        sh  ("""
+            
+            curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*Job name:* ${env.JOB_NAME}  \n\n*Build number:* ${env.BUILD_NUMBER} \n\n*Build status*: Failure \n'
+        """)
+            
+        }
+      slackSend (color: '#FF0000', message: "Build was failed: \n\n Job name --> ${env.JOB_NAME} \n Build number --> 1.${env.BUILD_NUMBER}.1")
+    }
   }
     
-    
-  }
+}
